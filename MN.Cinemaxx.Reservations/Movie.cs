@@ -10,12 +10,26 @@
 namespace MN.Cinemaxx.Reservations
 {
     using System;
+    using System.Globalization;
+    using System.Linq;
+
+    using CsQuery;
 
     /// <summary>
     /// The movie.
     /// </summary>
     public class Movie
     {
+        /// <summary>
+        /// The buy url.
+        /// </summary>
+        private const string BuyUrl = "https://ticket.cinemaxx.de/portal/index.html?performanceOId={0}";
+
+        /// <summary>
+        /// The seat url.
+        /// </summary>
+        private const string SeatUrl = "https://ticket.cinemaxx.de/index.html?performanceOId={0}&intern=default&update=updateSeatingplan";
+        
         /// <summary>
         /// The id.
         /// </summary>
@@ -34,10 +48,7 @@ namespace MN.Cinemaxx.Reservations
         /// <summary>
         /// Gets the reservations.
         /// </summary>
-        public long Reservations 
-        { 
-            get { return GetReservations(this.id); }
-        }
+        public readonly long Reservations;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Movie"/> class.
@@ -48,20 +59,30 @@ namespace MN.Cinemaxx.Reservations
         public Movie(string id)
         {
             this.id = id;
-        }
 
-        /// <summary>
-        /// The get reservations.
-        /// </summary>
-        /// <param name="movieId">
-        /// The movie Id.
-        /// </param>
-        /// <returns>
-        /// The <see cref="long"/>.
-        /// </returns>
-        private static long GetReservations(string movieId)
-        {
-            throw new NotImplementedException();
+            var cq = CQ.CreateFromUrl(string.Format(BuyUrl, this.id));
+
+            if (cq.Select(".http500").Length > 0)
+            {
+                this.Name = "Error";
+                this.Reservations = 0;
+                return;
+            }
+
+            var res = CQ.CreateFromUrl(string.Format(SeatUrl, this.id));
+
+            this.Reservations = res.Select("seat").Length;
+            ////this.Reservations = cq.Select("div[data-used=\"yes\"].seat").Length;
+            this.Name = cq.Select("div#ticketInfos h3")[0].InnerText.Trim();
+
+            var date =
+                cq.Select("div#ticketInfos .date")[0].InnerText.Split(',')
+                                                     .Last()
+                                                     .Replace(" Uhr", string.Empty)
+                                                     .Replace("&nbsp;", string.Empty)
+                                                     .Replace("\t", string.Empty)
+                                                     .Replace("\n", " ");
+            this.Time = DateTime.Parse(date.Trim(), new CultureInfo("de-DE"));
         }
     }
 }
