@@ -1,0 +1,17 @@
+<StyleCopSettings Version="105">
+  <Analyzers>
+    <Analyzer AnalyzerId="StyleCop.CSharp.DocumentationRules">
+      <Rules>
+        <Rule Name="ElementDocumentationMustBeSpelledCorrectly">
+          <RuleSettings>
+            <BooleanProperty Name="Enabled">False</BooleanProperty>
+          </RuleSettings>
+        </Rule>
+      </Rules>
+      <AnalyzerSettings>
+        <StringProperty Name="CompanyName">Max Nowack</StringProperty>
+        <StringProperty Name="Copyright">copyright notice</StringProperty>
+      </AnalyzerSettings>
+    </Analyzer>
+  </Analyzers>
+</StyleCopSettings>
