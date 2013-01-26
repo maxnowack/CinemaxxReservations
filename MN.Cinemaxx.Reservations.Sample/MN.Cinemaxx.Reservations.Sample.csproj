@@ -47,6 +47,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MN.Cinemaxx.Reservations\MN.Cinemaxx.Reservations.csproj">
+      <Project>{abd181bf-56a1-4752-a90b-d7bef2b64eff}</Project>
+      <Name>MN.Cinemaxx.Reservations</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

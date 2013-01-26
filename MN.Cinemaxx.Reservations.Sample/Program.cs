@@ -9,6 +9,10 @@
 
 namespace MN.Cinemaxx.Reservations.Sample
 {
+    using System;
+
+    using MN.Cinemaxx.Reservations;
+
     /// <summary>
     /// The program.
     /// </summary>
@@ -22,6 +26,13 @@ namespace MN.Cinemaxx.Reservations.Sample
         /// </param>
         public static void Main(string[] args)
         {
+            var cinema = new Cinema(8);
+            var movies = cinema.GetMovies(DateTime.Now);
+
+            foreach (var movie in movies)
+            {
+                Console.WriteLine(movie.Time.ToString("dd.MM.yyyy HH:mm ") + movie.Name + ": " + movie.Reservations);
+            }
         }
     }
 }
