@@ -40,6 +40,11 @@ namespace MN.Cinemaxx.Reservations
         /// </summary>
         private readonly string id;
 
+        public Movie()
+        {
+            
+        }
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="Movie"/> class.
         /// </summary>
