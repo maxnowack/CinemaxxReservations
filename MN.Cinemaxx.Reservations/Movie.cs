@@ -21,6 +21,11 @@ namespace MN.Cinemaxx.Reservations
     public class Movie
     {
         /// <summary>
+        /// Gets the reservations.
+        /// </summary>
+        public readonly long Reservations;
+
+        /// <summary>
         /// The buy url.
         /// </summary>
         private const string BuyUrl = "https://ticket.cinemaxx.de/portal/index.html?performanceOId={0}";
@@ -29,26 +34,11 @@ namespace MN.Cinemaxx.Reservations
         /// The seat url.
         /// </summary>
         private const string SeatUrl = "https://ticket.cinemaxx.de/index.html?performanceOId={0}&intern=default&update=updateSeatingplan";
-        
+
         /// <summary>
         /// The id.
         /// </summary>
         private readonly string id;
-
-        /// <summary>
-        /// Gets or sets the name.
-        /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// Gets or sets the time.
-        /// </summary>
-        public DateTime Time { get; set; }
-
-        /// <summary>
-        /// Gets the reservations.
-        /// </summary>
-        public readonly long Reservations;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Movie"/> class.
@@ -82,5 +72,15 @@ namespace MN.Cinemaxx.Reservations
             var res = CQ.CreateFromUrl(string.Format(SeatUrl, this.id));
             this.Reservations = res.Select("seat").Length;
         }
+
+        /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Gets or sets the time.
+        /// </summary>
+        public DateTime Time { get; set; }
     }
 }
