@@ -69,20 +69,18 @@ namespace MN.Cinemaxx.Reservations
                 return;
             }
 
-            var res = CQ.CreateFromUrl(string.Format(SeatUrl, this.id));
-
-            this.Reservations = res.Select("seat").Length;
-            ////this.Reservations = cq.Select("div[data-used=\"yes\"].seat").Length;
             this.Name = cq.Select("div#ticketInfos h3")[0].InnerText.Trim();
 
-            var date =
-                cq.Select("div#ticketInfos .date")[0].InnerText.Split(',')
+            var date = cq.Select("div#ticketInfos .date")[0].InnerText.Split(',')
                                                      .Last()
                                                      .Replace(" Uhr", string.Empty)
                                                      .Replace("&nbsp;", string.Empty)
                                                      .Replace("\t", string.Empty)
                                                      .Replace("\n", " ");
             this.Time = DateTime.Parse(date.Trim(), new CultureInfo("de-DE"));
+
+            var res = CQ.CreateFromUrl(string.Format(SeatUrl, this.id));
+            this.Reservations = res.Select("seat").Length;
         }
     }
 }
