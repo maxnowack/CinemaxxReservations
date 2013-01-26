@@ -23,7 +23,7 @@ namespace MN.Cinemaxx.Reservations
         /// <summary>
         /// Gets the reservations.
         /// </summary>
-        public readonly long Reservations;
+        public long Reservations { get; set; }
 
         /// <summary>
         /// The buy url.
