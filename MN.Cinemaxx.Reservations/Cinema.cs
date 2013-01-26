@@ -11,12 +11,17 @@ namespace MN.Cinemaxx.Reservations
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
+
+    using CsQuery;
 
     /// <summary>
     /// The cinema.
     /// </summary>
     public class Cinema
     {
+        private const string ScheduleUrl = "http://cinemaxx.de/Programm/AktuellesProgramm?switchCinemaId={0}";
+
         /// <summary>
         /// The cinema id.
         /// </summary>
@@ -44,8 +49,11 @@ namespace MN.Cinemaxx.Reservations
         /// </returns>
         public List<Movie> GetMovies(DateTime week)
         {
-            var retVal = new List<Movie>();
-            return retVal;
+            var cq = CQ.CreateFromUrl(string.Format(ScheduleUrl, this.cinemaId));
+            var movieLinks = cq.Select(".reserv");
+            var ids = movieLinks.Select(movie => movie.Attributes["href"].Split('/').Last()).ToList();
+            
+            return ids.Distinct().Select(id => new Movie(id)).ToList();
         }
     }
 }
