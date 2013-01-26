@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MN.Cinemaxx.Reservations", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MN.Cinemaxx.Reservations.Sample", "MN.Cinemaxx.Reservations.Sample\MN.Cinemaxx.Reservations.Sample.csproj", "{A7DE1FC1-11EC-45AD-89C7-F1951400F38A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MN.Cinemaxx.Reservations.SampleForm", "MN.Cinemaxx.Reservations.SampleForm\MN.Cinemaxx.Reservations.SampleForm.csproj", "{CDB56BBE-8252-4995-B75D-AD092D48FFB3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{A7DE1FC1-11EC-45AD-89C7-F1951400F38A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7DE1FC1-11EC-45AD-89C7-F1951400F38A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7DE1FC1-11EC-45AD-89C7-F1951400F38A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDB56BBE-8252-4995-B75D-AD092D48FFB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDB56BBE-8252-4995-B75D-AD092D48FFB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDB56BBE-8252-4995-B75D-AD092D48FFB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDB56BBE-8252-4995-B75D-AD092D48FFB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
