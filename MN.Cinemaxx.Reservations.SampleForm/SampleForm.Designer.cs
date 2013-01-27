@@ -45,16 +45,50 @@
             this.dtpDay.Name = "dtpDay";
             this.dtpDay.Size = new System.Drawing.Size(200, 20);
             this.dtpDay.TabIndex = 1;
+            this.dtpDay.ValueChanged += new System.EventHandler(this.dtpDay_ValueChanged);
             // 
             // cmbCinema
             // 
             this.cmbCinema.FormattingEnabled = true;
             this.cmbCinema.Items.AddRange(new object[] {
-            "8"});
+            "Augsburg | 63",
+            "Berlin | 12",
+            "Bielefeld | 62",
+            "Bremen | 7",
+            "Dresden | 83",
+            "Essen | 6",
+            "Freiburg | 5",
+            "Göttingen | 8",
+            "Halle | 27",
+            "Hamburg-Dammtor | 10",
+            "Hamburg-Harburg | 49",
+            "Hamburg-Wandsbek | 73",
+            "Hamburg Holi | 34",
+            "Hannover-Nikolaistraße | 9",
+            "Hannover-Raschplatz | 81",
+            "Heilbronn | 75",
+            "Kiel | 43",
+            "Krefeld | 13",
+            "Magdeburg | 41",
+            "Mannheim | 30",
+            "Mü;nchen | 11",
+            "Mülheim | 50",
+            "Offenbach | 32",
+            "Oldenburg | 80",
+            "Regensburg | 33",
+            "Sindelfingen | 116",
+            "Stuttgart (SI-Centrum) | 42",
+            "Stuttgart a.d. Liederhalle | 77",
+            "Trier | 76",
+            "Wolfsburg | 102",
+            "Wuppertal | 26",
+            "Würzburg | 64"});
             this.cmbCinema.Location = new System.Drawing.Point(12, 12);
             this.cmbCinema.Name = "cmbCinema";
             this.cmbCinema.Size = new System.Drawing.Size(121, 21);
+            this.cmbCinema.Sorted = true;
             this.cmbCinema.TabIndex = 2;
+            this.cmbCinema.SelectedIndexChanged += new System.EventHandler(this.cmbCinema_SelectedIndexChanged);
             // 
             // btnRefresh
             // 

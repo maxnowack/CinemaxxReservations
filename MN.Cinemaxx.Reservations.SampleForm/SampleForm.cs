@@ -44,7 +44,7 @@ namespace MN.Cinemaxx.Reservations.SampleForm
         /// </param>
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            var m = new Cinema(int.Parse("8")).GetMovies(this.dtpDay.Value);
+            var m = new Cinema(int.Parse(this.cmbCinema.SelectedItem.ToString().Split('|').Last().Trim())).GetMovies(this.dtpDay.Value);
             var serializer = new XmlSerializer(typeof(List<Movie>));
             var stream = new FileStream(CacheFile, FileMode.Truncate);
             serializer.Serialize(stream, m);
