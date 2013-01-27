@@ -94,6 +94,14 @@ namespace MN.Cinemaxx.Reservations.SampleForm
             this.cmbCinema.SelectedIndex = 7;
             this.dtpDay.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
         }
+
+        private void dtpDay_ValueChanged(object sender, EventArgs e)
+        {
+            this.GenerateChart();
+        }
+
+        private void cmbCinema_SelectedIndexChanged(object sender, EventArgs e)
+        {
             this.GenerateChart();
         }
     }
