@@ -22,15 +22,12 @@ namespace MN.Cinemaxx.Reservations.SampleForm
     /// </summary>
     public partial class SampleForm : Form
     {
-        private static string CacheFile { get; set; }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="SampleForm"/> class.
         /// </summary>
         public SampleForm()
         {
             this.InitializeComponent();
-            CacheFile = Directory.GetCurrentDirectory() + "\\data.xml"; //Path.GetTempFileName();
         }
 
         /// <summary>
@@ -46,7 +43,7 @@ namespace MN.Cinemaxx.Reservations.SampleForm
         {
             var m = new Cinema(int.Parse(this.cmbCinema.SelectedItem.ToString().Split('|').Last().Trim())).GetMovies(this.dtpDay.Value);
             var serializer = new XmlSerializer(typeof(List<Movie>));
-            var stream = new FileStream(CacheFile, FileMode.Truncate);
+            var stream = new FileStream(Directory.GetCurrentDirectory() + "\\" + this.cmbCinema.SelectedItem.ToString().Split('|').Last().Trim() + ".xml", FileMode.Truncate);
             serializer.Serialize(stream, m);
             stream.Close();
 
@@ -61,7 +58,7 @@ namespace MN.Cinemaxx.Reservations.SampleForm
             var serializer = new XmlSerializer(typeof(List<Movie>));
             var m = new List<Movie>();
 
-            var stream = new FileStream(CacheFile, FileMode.OpenOrCreate);
+            var stream = new FileStream(Directory.GetCurrentDirectory() + "\\" + this.cmbCinema.SelectedItem.ToString().Split('|').Last().Trim() + ".xml", FileMode.OpenOrCreate);
             if (stream.Length > 0)
             {
                 m = (List<Movie>)serializer.Deserialize(stream);
