@@ -79,6 +79,8 @@ namespace MN.Cinemaxx.Reservations.SampleForm
 
             var s = this.chart1.Series.FirstOrDefault();
             s.Points.Clear();
+            this.chart1.ChartAreas[0].AxisX.Maximum = this.dtpDay.Value.AddDays(1).ToOADate();
+            this.chart1.ChartAreas[0].AxisX.Minimum = this.dtpDay.Value.AddHours(12).ToOADate();
             foreach (var time in times)
             {
                 var dp = new DataPoint();
@@ -89,6 +91,9 @@ namespace MN.Cinemaxx.Reservations.SampleForm
 
         private void SampleForm_Load(object sender, EventArgs e)
         {
+            this.cmbCinema.SelectedIndex = 7;
+            this.dtpDay.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+        }
             this.GenerateChart();
         }
     }
