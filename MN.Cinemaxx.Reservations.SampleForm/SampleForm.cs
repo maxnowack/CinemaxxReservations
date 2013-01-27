@@ -14,12 +14,8 @@ namespace MN.Cinemaxx.Reservations.SampleForm
     using System.IO;
     using System.Linq;
     using System.Windows.Forms;
-    using System.Linq;
-    using System.Linq.Expressions;
     using System.Windows.Forms.DataVisualization.Charting;
     using System.Xml.Serialization;
-
-    using CristiPotlog.ChartControl;
 
     /// <summary>
     /// The sample form.
@@ -76,10 +72,12 @@ namespace MN.Cinemaxx.Reservations.SampleForm
                 stream.Close();
                 this.btnRefresh_Click(new object(), new EventArgs());
             }
-            
-            var times = m.Where(x => x.Name != string.Empty && x.Time >= this.dtpDay.Value)
-                         .GroupBy(x => x.Time)
-                         .Select(mov => new { Time = mov.Key, Reservations = mov.Sum(x => x.Reservations) })
+
+            var times =
+                m.Where(
+                    x => x.Name != string.Empty && x.Time >= this.dtpDay.Value && x.Time <= this.dtpDay.Value.AddDays(1))
+                 .GroupBy(x => x.Time)
+                 .Select(mov => new { Time = mov.Key, Reservations = mov.Sum(x => x.Reservations) })
                  .OrderBy(x => x.Time);
 
             var s = this.chart1.Series.FirstOrDefault();
