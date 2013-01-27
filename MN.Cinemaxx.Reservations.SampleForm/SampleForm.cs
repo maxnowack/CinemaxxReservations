@@ -43,7 +43,7 @@ namespace MN.Cinemaxx.Reservations.SampleForm
         {
             var m = new Cinema(int.Parse(this.cmbCinema.SelectedItem.ToString().Split('|').Last().Trim())).GetMovies(this.dtpDay.Value);
             var serializer = new XmlSerializer(typeof(List<Movie>));
-            var stream = new FileStream(Directory.GetCurrentDirectory() + "\\" + this.cmbCinema.SelectedItem.ToString().Split('|').Last().Trim() + ".xml", FileMode.Truncate);
+            var stream = new FileStream(Directory.GetCurrentDirectory() + "\\data\\" + this.cmbCinema.SelectedItem.ToString().Split('|').Last().Trim() + ".xml", FileMode.Truncate);
             serializer.Serialize(stream, m);
             stream.Close();
 
@@ -59,7 +59,7 @@ namespace MN.Cinemaxx.Reservations.SampleForm
             var serializer = new XmlSerializer(typeof(List<Movie>));
             var m = new List<Movie>();
 
-            var stream = new FileStream(Directory.GetCurrentDirectory() + "\\" + this.cmbCinema.SelectedItem.ToString().Split('|').Last().Trim() + ".xml", FileMode.OpenOrCreate);
+            var stream = new FileStream(Directory.GetCurrentDirectory() + "\\data\\" + this.cmbCinema.SelectedItem.ToString().Split('|').Last().Trim() + ".xml", FileMode.OpenOrCreate);
             if (stream.Length > 0)
             {
                 m = (List<Movie>)serializer.Deserialize(stream);
