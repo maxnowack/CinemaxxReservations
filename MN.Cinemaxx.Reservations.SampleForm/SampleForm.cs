@@ -55,6 +55,7 @@ namespace MN.Cinemaxx.Reservations.SampleForm
         /// </summary>
         private void GenerateChart()
         {
+            this.disableControls(false);
             var serializer = new XmlSerializer(typeof(List<Movie>));
             var m = new List<Movie>();
 
@@ -87,6 +88,7 @@ namespace MN.Cinemaxx.Reservations.SampleForm
                 dp.SetValueXY(time.Time, time.Reservations);
                 s.Points.Add(dp);
             }
+            this.disableControls(true);
         }
 
         private void SampleForm_Load(object sender, EventArgs e)
@@ -103,6 +105,15 @@ namespace MN.Cinemaxx.Reservations.SampleForm
         private void cmbCinema_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.GenerateChart();
+        }
+
+        private void disableControls(bool enable)
+        {
+            this.cmbCinema.Enabled = enable;
+            this.dtpDay.Enabled = enable;
+            this.btnRefresh.Enabled = enable;
+            this.chart1.Enabled = enable;
+            
         }
     }
 }
