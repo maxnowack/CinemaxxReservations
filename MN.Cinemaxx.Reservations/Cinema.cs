@@ -20,6 +20,9 @@ namespace MN.Cinemaxx.Reservations
     /// </summary>
     public class Cinema
     {
+        /// <summary>
+        /// The schedule url.
+        /// </summary>
         private const string ScheduleUrl = "http://cinemaxx.de/Programm/AktuellesProgramm?switchCinemaId={0}&WeekStart={1:yyyyMMdd}";
 
         /// <summary>
@@ -50,7 +53,7 @@ namespace MN.Cinemaxx.Reservations
         public List<Movie> GetMovies(DateTime week)
         {
             var cq = CQ.CreateFromUrl(string.Format(ScheduleUrl, this.cinemaId, week));
-            var movieLinks = cq.Select(".reserv");
+            var movieLinks = cq.Select("a.reserv, a.call");
             var ids = movieLinks.Select(movie => movie.Attributes["href"].Split('/').Last()).ToList();
             
             return ids.Distinct().Select(id => new Movie(id)).ToList();
